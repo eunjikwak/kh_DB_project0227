@@ -12,9 +12,7 @@ public class Main{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         CustomerDAO cDao = new CustomerDAO();
-
         Menu menu = new Menu();
-
 
         while (true) {
             System.out.println("========== [CUSTOMER TABLE Command] ==========");
