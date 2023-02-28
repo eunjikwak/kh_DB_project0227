@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CustomerDAO {
-        Connection conn = null; // 자바와 오라클에 대한 연결 설정
-        Statement stmt = null; // SQL문을 수행하기 위한 객체
+        Connection conn = null;
+        Statement stmt = null;
         PreparedStatement pStmt = null;
-        ResultSet rs = null; // statement 동작에 대한 결과로 전달되는 DB의 내용
+        ResultSet rs = null;
 
         Scanner sc = new Scanner(System.in);
 
@@ -26,9 +26,9 @@ public class CustomerDAO {
                 conn = Common.getConnection();
                 stmt = conn.createStatement();
                 String sql = "SELECT * FROM CUSTOMER";
-                rs = stmt.executeQuery(sql); // select 문과 같이 여러개의 레코드(행)로 결과가 반환 될 때 사용
+                rs = stmt.executeQuery(sql);
 
-                while(rs.next()) { //읽을 행이 있으면 참
+                while(rs.next()) {
                     int cid = rs.getInt("CS_ID");
                     String cname = rs.getString("CS_NAME");
                     String phone = rs.getString("PHONE");
@@ -79,5 +79,47 @@ public class CustomerDAO {
             Common.close(stmt);
             Common.close(conn);
         }
+
+    public void customerUpdate() {
+        System.out.print("변경할 회원의 전화번호 뒷자리를 입력하세요 : ");
+        String csid = sc. next();
+        System.out.print("변경할 이름을 입력하세요 : ");
+        String cname = sc.next();
+        System.out.print("변경할 전화번호를 입력하세요 : ");
+        String phone = sc.next();
+
+
+        String sql = "UPDATE CUSTOMER SET CS_NAME = ?, PHONE = ? WHERE CS_ID = ?";
+
+        try{
+            conn = Common.getConnection();
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, cname);
+            pStmt.setString(2,phone);
+            pStmt.setString(3,csid);
+            pStmt.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        Common.close(pStmt);
+        Common.close(conn);
+
+    }
+
+    public void customerDelete(){
+        System.out.print("삭제할 회원의 아이디를 입력 하세요 (전화번호 뒷자리) : ");
+        String csid = sc.next();
+        String sql = "DELETE FROM CUSTOMER WHERE CS_ID = ?";
+        try{
+            conn = Common.getConnection();
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1,csid);
+            pStmt.executeUpdate();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        Common.close(pStmt);
+        Common.close(conn);
 
     }
