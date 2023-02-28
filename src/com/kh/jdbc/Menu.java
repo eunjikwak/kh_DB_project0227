@@ -2,8 +2,7 @@ package com.kh.jdbc;
 
 import com.kh.jdbc.dao.*;
 
-import com.kh.jdbc.vo.CustomerVO;
-import com.kh.jdbc.vo.MenuVO;
+import com.kh.jdbc.vo.*;
 
 import java.util.List;
 import java.util.Scanner;
@@ -11,7 +10,7 @@ import java.util.Scanner;
 public class Menu {
     CustomerDAO cDao = new CustomerDAO();
     MenuDAO mDao = new MenuDAO();
-    OptionDAO otDao = new OptionDAO();
+    OptionDAO opDao = new OptionDAO();
     OrderDAO orDao = new OrderDAO();
     StoreDAO sDao = new StoreDAO();
     Scanner sc = new Scanner(System.in);
@@ -34,8 +33,9 @@ public class Menu {
                     break;
                 case 4 :
                     cDao.customerDelete();
-                    return;
+                    break;
             }
+            break;
         }
     }
     public void menu2(){
@@ -50,9 +50,10 @@ public class Menu {
                     mDao.menuSelectPrint(list);
                     break;
                 case 2 :
-
+                    mDao.menuInsert();
                     break;
             }
+            break;
         }
     }
 
@@ -62,62 +63,33 @@ public class Menu {
         while (true) {
             System.out.println("========== [OPTION TABLE Command] ==========");
             System.out.println("메뉴를 선택 하세요 : ");
-            System.out.print("[1]SELECT [2] INSERT, [3]UPDATE, [4]DELETE : ");
+            System.out.print("[1]SELECT [2] INSERT : ");
             int sel = sc.nextInt();
             switch (sel) {
                 case 1 :
-
+                    List<OrderVO> list = orDao.orderSelect();
+                    orDao.orderSelectPrint(list);
                     break;
                 case 2 :
                     break;
-                case 3 :
-
-                    break;
-                case 4 :
-
-                    return;
             }
+            break;
         }
     }
     public void menu4(){
         while (true) {
-            System.out.println("========== [ORDER TABLE Command] ==========");
-            System.out.println("메뉴를 선택 하세요 : ");
-            System.out.print("[1]SELECT [2] INSERT, [3]UPDATE, [4]DELETE : ");
-            int sel = sc.nextInt();
-            switch (sel) {
-                case 1 :
-                    break;
-                case 2 :
-                    break;
-                case 3 :
-                    break;
-                case 4 :
-
-                    return;
-            }
+            System.out.println("========== [ORDER TABLE 조회] ==========");
+            List<OptionVO> list = opDao.optionSelect();
+            opDao.optionSelectPrint(list);
+            break;
         }
     }
     public void menu5(){
         while (true) {
-            System.out.println("========== [STORE TABLE Command] ==========");
-            System.out.println("메뉴를 선택 하세요 : ");
-            System.out.print("[1]SELECT [2] INSERT, [3]UPDATE, [4]DELETE : ");
-            int sel = sc.nextInt();
-            switch (sel) {
-                case 1 :
-
-                    break;
-                case 2 :
-
-                    break;
-                case 3 :
-
-                    break;
-                case 4 :
-
-                    return;
-            }
+            System.out.println("========== [STORE TABLE 조회] ==========");
+            List<StoreVO> list = sDao.storeSelect();
+            sDao.storeSelectPrint(list);
+            break;
         }
     }
 

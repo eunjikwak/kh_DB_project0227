@@ -7,7 +7,8 @@ public class Main{
         Scanner sc = new Scanner(System.in);
 
         Menu menu = new Menu();
-
+        //메뉴 조회 테스트
+        /*
         while (true) {
             System.out.println("========== [CUSTOMER TABLE Command] ==========");
             System.out.println("메뉴를 선택 하세요 : ");
@@ -27,7 +28,7 @@ public class Main{
                 case 5 :menu.menu5();
                     return;
             }
-        }
+        }*/
 
     }
 }

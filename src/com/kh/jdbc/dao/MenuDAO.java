@@ -5,6 +5,7 @@ import com.kh.jdbc.util.Common;
 import com.kh.jdbc.vo.MenuVO;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class MenuDAO {
     Connection conn = null; // 자바와 오라클에 대한 연결 설정
     Statement stmt = null; // SQL문을 수행하기 위한 객체
     ResultSet rs = null; // statement 동작에 대한 결과로 전달되는 DB의 내용
-
+    PreparedStatement pstmt = null;
     Scanner sc = new Scanner(System.in);
 
     public List<MenuVO> MenuSelect() {
@@ -53,5 +54,31 @@ public class MenuDAO {
             System.out.println("판매수량 : " + e.getCnt());
             System.out.println("=========================");
         }
+    }
+
+    public void menuInsert() {
+        System.out.println("메뉴등록");
+        System.out.print("메뉴 번호 입력 : ");
+        int no = sc.nextInt();
+        sc.nextLine();
+        System.out.print("메뉴명을 입력하세요: ");
+        String name = sc.nextLine();
+        System.out.print("설명 입력 : ");
+        String desc = sc.nextLine();
+
+        String sql = "INSERT INTO MENU(M_NO,M_NAME,M_DESC) VALUES(?,?,?)";
+
+        try {
+            conn = Common.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,no);
+            pstmt.setString(2,name);
+            pstmt.setString(3,desc);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Common.close(pstmt);
+        Common.close(conn);
     }
 }
