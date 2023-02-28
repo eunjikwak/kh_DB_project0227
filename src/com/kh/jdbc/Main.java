@@ -2,8 +2,10 @@ package com.kh.jdbc;
 
 import com.kh.jdbc.dao.CustomerDAO;
 import com.kh.jdbc.dao.EmpDAO;
+import com.kh.jdbc.dao.MenuDAO;
 import com.kh.jdbc.vo.CustomerVO;
 import com.kh.jdbc.vo.EmpVO;
+import com.kh.jdbc.vo.MenuVO;
 
 import java.util.List;
 import java.util.Scanner;
@@ -12,6 +14,7 @@ public class Main{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         CustomerDAO cDao = new CustomerDAO();
+        MenuDAO mDao = new MenuDAO();
         while (true) {
             System.out.println("========== [TABLE Command] ==========");
             System.out.println("메뉴를 선택 하세요 : ");
@@ -19,8 +22,11 @@ public class Main{
             int sel = sc.nextInt();
             switch (sel) {
                 case 1 :
-                    List<CustomerVO> list = cDao.CustomerSelect();
-                    cDao.customerSelectPrint(list);
+//                    List<CustomerVO> list = cDao.CustomerSelect();
+//                    cDao.customerSelectPrint(list);
+
+                    List<MenuVO> mlist = mDao.MenuSelect();
+                    mDao.menuSelectPrint(mlist);
                     break;
                 case 2 :
                     cDao.customerInsert();
