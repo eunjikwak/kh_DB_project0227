@@ -13,7 +13,7 @@ public class Main{
         Scanner sc = new Scanner(System.in);
         CustomerDAO cDao = new CustomerDAO();
         while (true) {
-            System.out.println("========== [CUSTOMER TABLE Command] ==========");
+            System.out.println("========== [TABLE Command] ==========");
             System.out.println("메뉴를 선택 하세요 : ");
             System.out.print("[1] SELECT [2] INSERT, [3]UPDATE, [4]DELETE [5]EXIT : ");
             int sel = sc.nextInt();
