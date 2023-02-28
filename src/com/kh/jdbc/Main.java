@@ -11,27 +11,26 @@ import java.util.Scanner;
 public class Main{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        CustomerDAO cDao = new CustomerDAO();
+
         Menu menu = new Menu();
 
         while (true) {
             System.out.println("========== [CUSTOMER TABLE Command] ==========");
             System.out.println("메뉴를 선택 하세요 : ");
-            System.out.print("[1] SELECT [2] INSERT, [3]UPDATE, [4]DELETE [5]EXIT : ");
+            System.out.print("[1]고객정보 [2] 메뉴, [3]주문내역, [4]옵션 [5]관리자 : ");
             int sel = sc.nextInt();
             switch (sel) {
                 case 1 :
-                    List<CustomerVO> list = cDao.CustomerSelect();
-                    cDao.customerSelectPrint(list);
+                    menu.menu1();
                     break;
                 case 2 :
-                    cDao.customerInsert();
+                    menu.menu2();
                     break;
-
                 case 3 : menu.menu3();
-                case 4 :
-                case 5 :
-                    System.out.println("메뉴를 종료합니다.");
+                    break;
+                case 4 :menu.menu4();
+                    break;
+                case 5 :menu.menu5();
                     return;
             }
         }
