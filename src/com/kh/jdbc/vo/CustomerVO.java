@@ -3,23 +3,23 @@ package com.kh.jdbc.vo;
 import java.math.BigDecimal;
 
 public class CustomerVO {
-    private int cid;
+    private String cid;
     private String cname;
     private String phone;
     private BigDecimal totalPoint;
 
-    public CustomerVO(int cid, String cname, String phone, BigDecimal totalPoint) {
+    public CustomerVO(String cid, String cname, String phone, BigDecimal totalPoint) {
         this.cid = cid;
         this.cname = cname;
         this.phone = phone;
         this.totalPoint = totalPoint;
     }
 
-    public int getCid() {
+    public String getCid() {
         return cid;
     }
 
-    public void setCid(int cid) {
+    public void setCid(String cid) {
         this.cid = cid;
     }
 

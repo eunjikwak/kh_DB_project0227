@@ -5,30 +5,35 @@ import java.util.Scanner;
 public class Main{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        Kiosk kio = new Kiosk();
 
-        Menu menu = new Menu();
-        //메뉴 조회 테스트
-        /*
         while (true) {
-            System.out.println("========== [CUSTOMER TABLE Command] ==========");
-            System.out.println("메뉴를 선택 하세요 : ");
-            System.out.print("[1]고객정보 [2] 메뉴, [3]주문내역, [4]옵션 [5]관리자 : ");
+            System.out.println("========== [BR ICE CREAM] ==========");
+            System.out.println("[메뉴를 선택 하세요]");
+            System.out.print("[1]주문하기 [2] 회원정보, [3]관리자모드, [4]종료 :");
             int sel = sc.nextInt();
             switch (sel) {
                 case 1 :
-                    menu.menu1();
+                   kio.orderMode();
                     break;
                 case 2 :
-                    menu.menu2();
+                   kio.memberMode();
                     break;
-                case 3 : menu.menu3();
+                case 3 :
+                    kio.systemMode();
                     break;
-                case 4 :menu.menu4();
+                case 4 :
+                   System.exit(0);
                     break;
-                case 5 :menu.menu5();
-                    return;
             }
-        }*/
+        }
+
+
+
+
+
+
+
 
     }
 }

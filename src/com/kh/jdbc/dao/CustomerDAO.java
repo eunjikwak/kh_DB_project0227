@@ -25,11 +25,11 @@ public class CustomerDAO {
         try {
             conn = Common.getConnection();
             stmt = conn.createStatement();
-            String sql = "SELECT * FROM CUSTOMER";
+            String sql = "SELECT * FROM CUSTOMER ";
             rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                int cid = rs.getInt("CS_ID");
+                String cid = rs.getString("CS_ID");
                 String cname = rs.getString("CS_NAME");
                 String phone = rs.getString("PHONE");
                 BigDecimal totalPoint = rs.getBigDecimal("TOTAL_POINT");
@@ -57,15 +57,50 @@ public class CustomerDAO {
         }
     }
 
+
+    public CustomerVO customerPointSelect(String val) {
+        CustomerVO vo = null;
+        try {
+            conn = Common.getConnection();
+            stmt = conn.createStatement();
+            String sql = "SELECT * FROM CUSTOMER WHERE CS_ID ="+val;
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                String cid = rs.getString("CS_ID");
+                String cname = rs.getString("CS_NAME");
+                String phone = rs.getString("PHONE");
+                BigDecimal totalPoint = rs.getBigDecimal("TOTAL_POINT");
+                 vo = new CustomerVO(cid, cname, phone, totalPoint); // 하나의 행(레코드)에 대한 정보 저장을 위한 객체 생성
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Common.close(rs);
+        Common.close(stmt);
+        Common.close(conn);
+        return vo;
+    }
+    public void customerPointPrint(CustomerVO vo) {
+            System.out.println("=========================");
+            System.out.println("회원 아이디 : " + vo.getCid());
+            System.out.println("회원 이름 : " + vo.getCname());
+            System.out.println("회원 전화번호 : " + vo.getPhone());
+            System.out.println("누적 포인트 : " + vo.getTotalPoint());
+            System.out.println("=========================");
+
+    }
+
+
     public void customerInsert() {
         System.out.println("회원가입창");
-        System.out.print("회원 아이디(전화번호 뒷자리) : ");
-        int cid = sc.nextInt();
+        //System.out.print("회원 아이디(전화번호 뒷자리) : ");
+        //int cid = sc.nextInt();
         System.out.print("회원 이름 : ");
         String cname = sc.next();
         System.out.print("전화번호 : ");
         String phone = sc.next();
-
+        String cid =phone.substring(9);
         String sql = "INSERT INTO CUSTOMER(CS_ID,CS_NAME,PHONE) VALUES("
                 + cid + ", " + "'" + cname + "'" + ", " + "'" + phone + "'" + ")";
 

@@ -25,7 +25,7 @@ public class Common {
         try {
             if(conn != null && !conn.isClosed()){
                 conn.close();
-                System.out.println("Connection 해제 성공");
+                //System.out.println("Connection 해제 성공");
             }
 
         } catch (Exception e) {
@@ -36,7 +36,7 @@ public class Common {
         try {
             if(stmt != null && !stmt.isClosed()){
                 stmt.close();
-                System.out.println("Statement 해제 성공");
+               // System.out.println("Statement 해제 성공");
             }
 
         } catch (Exception e) {
@@ -48,7 +48,7 @@ public class Common {
         try {
             if(rSet != null && !rSet.isClosed()){
                 rSet.close();
-                System.out.println("ResultSet 해제 성공");
+                //System.out.println("ResultSet 해제 성공");
             }
 
         } catch (Exception e) {
