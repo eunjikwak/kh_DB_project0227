@@ -14,6 +14,14 @@ public class MenuVO {
         this.stock = stock;
         this.cnt = cnt;
     }
+    public MenuVO(String name, int cnt) { //상위 5개 아이스크림 출력하기 위한 생성자
+        this.name = name;
+        this.cnt = cnt;
+    }
+
+
+
+
 
     public int getNo() {
         return no;
@@ -54,4 +62,7 @@ public class MenuVO {
     public void setCnt(int cnt) {
         this.cnt = cnt;
     }
+
+
+
 }

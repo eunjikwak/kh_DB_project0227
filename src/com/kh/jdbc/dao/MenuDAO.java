@@ -81,4 +81,22 @@ public class MenuDAO {
         Common.close(pstmt);
         Common.close(conn);
     }
+
+    public void menuDelete() {
+        System.out.print("삭제할 메뉴의 이름을 입력하세요 : ");
+        String mName = sc.next();
+        String sql = "DELETE FROM MENU WHERE M_NAME = ?";
+        try {
+            conn = Common.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, mName);
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Common.close(pstmt);
+        Common.close(conn);
+
+    }
 }
