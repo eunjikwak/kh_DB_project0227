@@ -28,6 +28,8 @@ public class Kiosk {
         String mName_rst = "";
         String sName_rst = "";
         int t_point = 0;
+        boolean isAdmin = false;
+
 
         while (isOrder) {
             System.out.println("============================  [ 주 문 하 기 ] ============================");
@@ -35,8 +37,13 @@ public class Kiosk {
             List<OptionVO> oplist = opDao.optionSelect();
             opDao.optionSizePrint(oplist);
             System.out.println();
-            System.out.print("사이즈 선택 : ");
-            int size_n = sc.nextInt();
+            int size_n = 0;
+            while (true) {
+                System.out.print("사이즈 선택 : ");
+                size_n = sc.nextInt();
+                if(size_n >0  && size_n < 7) break;
+                System.out.println("사이즈를 잘못 입력하셨습니다. 다시입력해주세요.");
+            }
             size = opDao.optionFind(size_n).getSize();
             //사이즈를 저장할 리스트
             sName.add(size);
@@ -72,12 +79,10 @@ public class Kiosk {
         boolean isPoint = (answer2 == 1) ? true : false;
         CustomerVO vo = null;
         if (isPoint) {
-            //포인트 번호 4자리 입력
-            System.out.print("전화번호 뒷 4자리를 입력해 주세요 : ");
-            id = sc.next();
-            vo = cDao.customerPointSelect(id);
-            t_point = vo.getTotalPoint();
-            System.out.println(vo.getCname() +"님 잔여 포인트 : "+t_point+" point 입니다.");
+                id = cDao.inputID();
+                vo = cDao.customerPointSelect(id);
+                t_point = vo.getTotalPoint();
+                System.out.println(vo.getCname() +"님 잔여 포인트 : "+t_point+" point 입니다.");
 
         } else {
             System.out.println("***************** 회원 가입 하시면 더 많은 혜택을 보실 수 있습니다. *****************");
@@ -86,8 +91,7 @@ public class Kiosk {
             boolean isJoin = (answer3 == 1) ? true : false;
             if (isJoin) {
                 cDao.customerInsert();
-                System.out.print("전화번호 뒷 4자리를 입력해 주세요 : ");
-                id = sc.next();
+                id = cDao.inputID();
                 vo = cDao.customerPointSelect(id);
                 t_point = vo.getTotalPoint();
                 System.out.println(vo.getCname() +"님 잔여 포인트 : "+t_point+" point 입니다.");
@@ -97,12 +101,24 @@ public class Kiosk {
                 t_point = 0;
             }
         }
-        // 스푼개수 입력
-        System.out.print("스푼 개수 입력 [최대 10개] : ");
-        int spoon = sc.nextInt();
-        //결제방법 선택
-        System.out.print("결제방법을 선택 하세요 [카드 / 현금] : ");
-        String payment = sc.next();
+        int spoon;
+        String payment = "";
+        while (true){
+            // 스푼개수 입력
+            System.out.print("스푼 개수 입력 [최대 10개] : ");
+            spoon = sc.nextInt();
+            if(spoon<=10)break;
+            System.out.println("잘못 입력하셨습니다. 다시입력해주세요.");
+        }
+
+        while(true){
+            //결제방법 선택
+            System.out.print("결제방법을 선택 하세요 [카드 / 현금] : ");
+            payment = sc.next();
+            if(payment.equals("카드") || payment.equals("현금"))break;
+            System.out.println("잘못 입력하셨습니다. 다시입력해주세요.");
+        }
+
         //주문완료
         System.out.println("주문이 완료되었습니다.");
         // 아이스크림 이름 한번에 문자열에 담기
@@ -160,7 +176,7 @@ public class Kiosk {
 
         for(String e : opSize){
             System.out.printf("%-30s",opDao.optionFind(e).getSize());
-            System.out.printf("               %-1s\n",opDao.optionFind(e).getPrice());
+            System.out.printf("               %-10s\n",opDao.optionFind(e).getPrice());
 
         }
         System.out.println("------------------------------------------------------------------------");
@@ -308,5 +324,6 @@ public class Kiosk {
             }
         }
     }
+
 }
 

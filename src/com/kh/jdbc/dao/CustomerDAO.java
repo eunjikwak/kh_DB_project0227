@@ -48,6 +48,7 @@ public class CustomerDAO {
 
 
     public void customerSelectPrint(List<CustomerVO> list) {
+
         for (CustomerVO e : list) {
             System.out.println("회원 아이디 : " + e.getCid());
             System.out.println("회원 이름 : " + e.getCname());
@@ -84,9 +85,10 @@ public class CustomerDAO {
     }
 
     public void customerPointPrint(CustomerVO vo) {
-//        if (vo == null) {
-//            System.out.println("해당하는 고객 정보가 없습니다.");
-//            return;}
+        if (vo == null) {
+            System.out.println("해당하는 고객 정보가 없습니다.");
+            return;
+        }
         System.out.println("------------------------------------------------------------------------");
         System.out.println("회원 아이디 : " + vo.getCid());
         System.out.println("회원 이름 : " + vo.getCname());
@@ -115,9 +117,8 @@ public class CustomerDAO {
             pStmt.setString(1, cid);
             pStmt.setString(2, cname);
             pStmt.setString(3, phone);
-
             int ret = pStmt.executeUpdate();
-            System.out.println("Return : " + ret);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -188,4 +189,46 @@ public class CustomerDAO {
         Common.close(pStmt);
         Common.close(conn);
     }
+
+    public boolean isCid(String id) { // 관리자 테이블에서 아이디, 비밀번호 조회 하는 메소드
+        boolean isCid = false;
+        try {
+            conn = Common.getConnection();
+            String query = "SELECT COUNT(*) FROM CUSTOMER WHERE CS_ID = ? ";
+            // COUNT(*) 일치하는 레코드가 있는지 확인! 만약 반환된 값이 0보다 크면, 일치하는 레코드가 존재한다는 것을 의미
+            pStmt = conn.prepareStatement(query);
+            pStmt.setString(1, id);
+            rs = pStmt.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                if (count > 0) {
+                    isCid = true;
+                }
+            }
+            Common.close(rs);
+            Common.close(pStmt);
+            Common.close(conn);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return isCid;
+    }
+    public String inputID() {
+        String id;
+        while (true){
+            //포인트 번호 4자리 입력
+            System.out.print("전화번호 뒷 4자리를 입력해 주세요 : ");
+            id = sc.next();
+            boolean isID =  isCid(id);
+            if(isID) break;
+            System.out.println("잘못 입력하셨습니다. 다시 입력 해주세요");
+        }
+        return id;
+    }
+
+
+
+
 }
