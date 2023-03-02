@@ -272,9 +272,19 @@ public class Kiosk {
                     sDAO.printStock();
                     break;
                 case 3:
+                    System.out.println("============================ [ 주 문  관 리 ] =============================");
+                    System.out.print("[1] 전체 주문내역 조회 [2] 고객별 주문내역 조회 : ");
+                    int orderSel = sc.nextInt();
                     //주문 내역 조회
-                    List<OrderVO> olist = orDao.orderSelect();
-                    orDao.orderSelectPrint(olist);
+                    switch (orderSel) {
+                        case 1: // 전체 주문내역 조회
+                            List<OrderVO> olist = orDao.orderSelect();
+                            orDao.orderSelectPrint(olist);
+                            break;
+                        case 2: // 회원별 주문내역 조회
+                            orDao.orderByNamePrint();
+                            break;
+                    }
                     break;
                 case 4:
                     System.out.println();
