@@ -6,9 +6,9 @@ public class CustomerVO {
     private String cid;
     private String cname;
     private String phone;
-    private BigDecimal totalPoint;
+    private int totalPoint;
 
-    public CustomerVO(String cid, String cname, String phone, BigDecimal totalPoint) {
+    public CustomerVO(String cid, String cname, String phone, int totalPoint) {
         this.cid = cid;
         this.cname = cname;
         this.phone = phone;
@@ -39,11 +39,11 @@ public class CustomerVO {
         this.phone = phone;
     }
 
-    public BigDecimal getTotalPoint() {
+    public int getTotalPoint() {
         return totalPoint;
     }
 
-    public void setTotalPoint(BigDecimal totalPoint) {
+    public void setTotalPoint(int totalPoint) {
         this.totalPoint = totalPoint;
     }
 }

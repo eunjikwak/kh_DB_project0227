@@ -32,7 +32,7 @@ public class CustomerDAO {
                 String cid = rs.getString("CS_ID");
                 String cname = rs.getString("CS_NAME");
                 String phone = rs.getString("PHONE");
-                BigDecimal totalPoint = rs.getBigDecimal("TOTAL_POINT");
+                int totalPoint = rs.getInt("TOTAL_POINT");
                 CustomerVO vo = new CustomerVO(cid, cname, phone, totalPoint); // 하나의 행(레코드)에 대한 정보 저장을 위한 객체 생성
                 list.add(vo);
             }
@@ -70,7 +70,7 @@ public class CustomerDAO {
                 String cid = rs.getString("CS_ID");
                 String cname = rs.getString("CS_NAME");
                 String phone = rs.getString("PHONE");
-                BigDecimal totalPoint = rs.getBigDecimal("TOTAL_POINT");
+                int totalPoint = rs.getInt("TOTAL_POINT");
                 vo = new CustomerVO(cid, cname, phone, totalPoint); // 하나의 행(레코드)에 대한 정보 저장을 위한 객체 생성
             }
 
@@ -161,6 +161,27 @@ public class CustomerDAO {
             pStmt.setString(1, csid);
             pStmt.executeUpdate();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Common.close(pStmt);
+        Common.close(conn);
+
+    }
+
+    public void pointUpdate(int price, int t_point,String id) {
+
+        int point = price/100;
+        t_point +=point;
+        String sql = "UPDATE CUSTOMER SET TOTAL_POINT = ? WHERE CS_ID = ?";
+
+        try {
+            conn = Common.getConnection();
+            pStmt = conn.prepareStatement(sql);
+            pStmt.setInt(1, t_point);
+            pStmt.setString(2, id);
+
+            pStmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }

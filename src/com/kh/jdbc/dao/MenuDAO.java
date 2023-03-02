@@ -55,6 +55,40 @@ public class MenuDAO {
             System.out.println("=========================");
         }
     }
+    public void menuOrderPrint(List<MenuVO> list) {
+        for(MenuVO e : list) {
+            System.out.print ("[" + e.getNo()+"]" + e.getName() +" ");
+            if(e.getNo() % 4 == 0){
+                System.out.println();
+                System.out.println("------------------------------------------------------------------------");
+            }
+        }
+        System.out.println();
+        System.out.println("------------------------------------------------------------------------");
+    }
+    public MenuVO menuFind(int num) {
+        MenuVO vo = null;
+        try {
+            conn = Common.getConnection();
+            stmt = conn.createStatement();
+            String sql = "SELECT * FROM MENU WHERE M_NO ="+num;
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int mNo = rs.getInt("M_NO");
+                String mName = rs.getString("M_NAME");
+                String desc = rs.getString("M_DESC");
+                int stock = rs.getInt("STOCK");
+                int mCnt = rs.getInt("M_CNT");
+                vo = new MenuVO(mNo, mName, desc, stock, mCnt);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Common.close(rs);
+        Common.close(stmt);
+        Common.close(conn);
+        return vo;
+    }
 
     public void menuInsert() {
         System.out.println("메뉴등록");
@@ -92,6 +126,24 @@ public class MenuDAO {
             pstmt.setString(1, mName);
             pstmt.executeUpdate();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Common.close(pstmt);
+        Common.close(conn);
+
+    }
+    public void stockUpdate(int stock, int saleCnt, String name) {
+
+        String sql = "UPDATE MENU SET STOCK = ?, M_CNT = ? WHERE M_NAME = ?";
+
+        try {
+            conn = Common.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, --stock);
+            pstmt.setInt(2, ++saleCnt);
+            pstmt.setString(3, name);
+            pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }

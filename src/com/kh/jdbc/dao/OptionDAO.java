@@ -51,5 +51,33 @@ public class OptionDAO {
             System.out.println("=========================");
         }
     }
+    public void optionSizePrint(List<OptionVO> list) {
+        for(OptionVO e : list) {
+            System.out.print("[" + e.getOption_num() + "]"+e.getSize() + "  ");
+        }
+
+    }
+
+    public OptionVO optionFind(int num) {
+        OptionVO vo = null;
+        try {
+            conn = Common.getConnection();
+            stmt = conn.createStatement();
+            String sql = "SELECT * FROM OP_TABLE WHERE OP_NUM ="+num;
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                String size = rs.getString("OP_SIZE");
+                int op_num = rs.getInt("OP_NUM");
+                int price = rs.getInt("PRICE");
+                vo = new OptionVO(size, op_num, price); // 하나의 행(레코드)에 대한 정보 저장을 위한 객체 생성
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Common.close(rs);
+        Common.close(stmt);
+        Common.close(conn);
+        return vo;
+    }
 
 }
