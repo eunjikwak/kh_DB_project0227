@@ -56,12 +56,9 @@ public class Menu {
             break;
         }
     }
-
-
-
     public void menu3(){
         while (true) {
-            System.out.println("========== [OPTION TABLE Command] ==========");
+            System.out.println("========================== [OPTION TABLE Command] ==========================");
             System.out.println("메뉴를 선택 하세요 : ");
             System.out.print("[1]SELECT [2] INSERT : ");
             int sel = sc.nextInt();
@@ -78,7 +75,7 @@ public class Menu {
     }
     public void menu4(){
         while (true) {
-            System.out.println("========== [ORDER TABLE 조회] ==========");
+            System.out.println("========================== [ORDER TABLE 조회] ==========================");
             List<OptionVO> list = opDao.optionSelect();
             opDao.optionSelectPrint(list);
             break;
@@ -86,12 +83,10 @@ public class Menu {
     }
     public void menu5(){
         while (true) {
-            System.out.println("========== [STORE TABLE 조회] ==========");
+            System.out.println("========================== [STORE TABLE 조회] ==========================");
             List<StoreVO> list = sDao.storeSelect();
             sDao.storeSelectPrint(list);
             break;
         }
     }
-
-
 }

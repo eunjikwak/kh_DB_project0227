@@ -208,13 +208,7 @@ public class StoreDAO {
             e.printStackTrace();
         }
         System.out.println("-----------------------------------");
-
     }
-
-
-
-
-
 }
 
 

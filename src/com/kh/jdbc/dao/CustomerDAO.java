@@ -187,6 +187,5 @@ public class CustomerDAO {
         }
         Common.close(pStmt);
         Common.close(conn);
-
     }
 }
