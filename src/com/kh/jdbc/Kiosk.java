@@ -278,7 +278,7 @@ public class Kiosk {
                     break;
                 case 4:
                     System.out.println();
-                    System.out.println("========================== [ 메 뉴  관 리 ] ==========================");
+                    System.out.println("============================ [ 메 뉴  관 리 ] =============================");
                     System.out.print("[1] 메뉴 등록 [2] 메뉴 삭제 [3] 메뉴 조회 : ");
                     int mSel = sc.nextInt();
                     switch (mSel) {

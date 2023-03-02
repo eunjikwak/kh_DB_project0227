@@ -52,7 +52,7 @@ public class MenuDAO {
             System.out.println("메뉴설명 : " + e.getDesc());
             System.out.println("재고수량 : " + e.getStock());
             System.out.println("판매수량 : " + e.getCnt());
-            System.out.println("=========================");
+            System.out.println("------------------------------------------------------------------------");
         }
     }
     public void menuOrderPrint(List<MenuVO> list) {
@@ -91,7 +91,7 @@ public class MenuDAO {
     }
 
     public void menuInsert() {
-        System.out.println("메뉴등록");
+        System.out.println("[ 메 뉴 등 록 ]");
         System.out.print("메뉴 번호 입력 : ");
         int no = sc.nextInt();
         sc.nextLine();
