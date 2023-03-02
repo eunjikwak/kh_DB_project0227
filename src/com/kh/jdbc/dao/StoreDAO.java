@@ -57,7 +57,7 @@ public class StoreDAO {
             System.out.println("주소 : " + e.getAddr());
             System.out.println("포스번호 : " + e.getPos());
 
-            System.out.println("=========================");
+            System.out.println("------------------------------------------------------------------------");
         }
     }
 

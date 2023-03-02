@@ -77,6 +77,8 @@ public class Kiosk {
             id = sc.next();
             vo = cDao.customerPointSelect(id);
             t_point = vo.getTotalPoint();
+            System.out.println(vo.getCname() +"님 잔여 포인트 : "+t_point+" point 입니다.");
+
         } else {
             System.out.println("***************** 회원 가입 하시면 더 많은 혜택을 보실 수 있습니다. *****************");
             System.out.print("회원 가입을 하시겠습니까?  [1] Yes [2] No : ");
@@ -88,6 +90,8 @@ public class Kiosk {
                 id = sc.next();
                 vo = cDao.customerPointSelect(id);
                 t_point = vo.getTotalPoint();
+                System.out.println(vo.getCname() +"님 잔여 포인트 : "+t_point+" point 입니다.");
+
             } else {
                 id = "";
                 t_point = 0;
@@ -134,9 +138,50 @@ public class Kiosk {
         int answer4= sc.nextInt();
         boolean isReceipt  = (answer4 == 1)? true:false;
         if(isReceipt){
+            receiptPrint(mName_rst,spoon,payment,t_price,sName,vo);
 
         }
         System.out.println("------------------------------------------------------------------------");
+    }
+
+    public void receiptPrint(String mName, int spoon, String payment, int t_total, List<String> opSize,CustomerVO vo) {
+        String opName;
+        int price;
+        System.out.println("============================  [ 영  수  증 ] ============================");
+        System.out.println("[ 주 문 번 호 ]");
+        List<StoreVO> storeVo = sDao.storeSelect();
+        sDao.storeSelectPrint(storeVo);
+        // 주문시간
+        java.util.Date now = new Date();
+        System.out.println(now);
+        System.out.println("------------------------------------------------------------------------");
+        System.out.println("           제품명                                 금액  ");
+        System.out.println("------------------------------------------------------------------------");
+
+        for(String e : opSize){
+            System.out.printf("%-30s",opDao.optionFind(e).getSize());
+            System.out.printf("               %-1s\n",opDao.optionFind(e).getPrice());
+
+        }
+        System.out.println("------------------------------------------------------------------------");
+        String[] menuArr = mName.split("/ ");
+        System.out.println("[ 아 이 스 크 림 맛 ]");
+        for(int i = 0 ; i < menuArr.length; i++) {
+            System.out.println(menuArr[i]);
+        }
+        System.out.println("------------------------------------------------------------------------");
+        System.out.println("스푼개수 (최대 10개) : " + spoon + "개");
+        System.out.println("결제 방법 : " + payment);
+        System.out.println("총 합계 : " + t_total + "원");
+        if(vo != null){
+            System.out.println("------------------------------------------------------------------------");
+            System.out.println("[ 고   객    정    보 ]");
+            System.out.println(vo.getCname() + "님 ");
+            System.out.println("적립 포인트 : " + t_total/100 + " point");
+            System.out.println("잔여 포인트 : " + vo.getTotalPoint()+ " point");
+        }
+
+
     }
 
 
