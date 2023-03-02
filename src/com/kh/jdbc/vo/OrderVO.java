@@ -8,11 +8,11 @@ public class OrderVO {
     int spoon;
     String payment;
     int total_price;
-    int id;
+    String id;
     int cs_point;
     int total_point;
 
-    public OrderVO(int no, String date, String size, String mName, int spoon, String payment, int total_price, int id, int cs_point, int total_point) {
+    public OrderVO(int no, String date, String size, String mName, int spoon, String payment, int total_price, String id, int cs_point, int total_point) {
         this.no = no;
         this.date = date;
         this.size = size;
@@ -81,11 +81,11 @@ public class OrderVO {
         this.total_price = total_price;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

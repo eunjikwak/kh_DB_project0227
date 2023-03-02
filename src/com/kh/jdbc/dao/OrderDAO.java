@@ -35,7 +35,7 @@ public class OrderDAO {
                 int spoon = rs.getInt("SPOON");
                 String payment = rs.getString("PAYMENT");
                 int total_price = rs.getInt("TOTAL_PRICE");
-                int id = rs.getInt("CS_ID");
+                String id = rs.getString("CS_ID");
                 int cs_point = rs.getInt("CS_POINT");
                 int total_point = rs.getInt("TOTAL_POINT");
 
