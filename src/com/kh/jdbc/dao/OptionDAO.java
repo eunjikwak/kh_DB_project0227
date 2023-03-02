@@ -43,14 +43,7 @@ public class OptionDAO {
         }
         return list;
     }
-    public void optionSelectPrint(List<OptionVO> list) {
-        for(OptionVO e : list) {
-            System.out.println("메뉴번호 : " + e.getSize());
-            System.out.println("메뉴명 : " + e.getOption_num());
-            System.out.println("메뉴설명 : " + e.getPrice());
-            System.out.println("=========================");
-        }
-    }
+
     public void optionSizePrint(List<OptionVO> list) {
         for(OptionVO e : list) {
             System.out.print("[" + e.getOption_num() + "]"+e.getSize() + "  ");

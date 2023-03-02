@@ -19,7 +19,6 @@ public class StoreDAO {
 
 
     public List<StoreVO> storeSelect() {
-
         List<StoreVO> list = new ArrayList<>();
         try {
             conn = Common.getConnection();

@@ -53,7 +53,7 @@ public class CustomerDAO {
             System.out.println("회원 이름 : " + e.getCname());
             System.out.println("회원 전화번호 : " + e.getPhone());
             System.out.println("누적 포인트 : " + e.getTotalPoint());
-            System.out.println("=========================");
+            System.out.println("------------------------------------------------------------------------");
         }
     }
 
@@ -87,19 +87,19 @@ public class CustomerDAO {
 //        if (vo == null) {
 //            System.out.println("해당하는 고객 정보가 없습니다.");
 //            return;}
-        System.out.println("=========================");
+        System.out.println("------------------------------------------------------------------------");
         System.out.println("회원 아이디 : " + vo.getCid());
         System.out.println("회원 이름 : " + vo.getCname());
         System.out.println("회원 전화번호 : " + vo.getPhone());
         System.out.println("누적 포인트 : " + vo.getTotalPoint());
-        System.out.println("=========================");
+        System.out.println("------------------------------------------------------------------------");
 
 
     }
 
 
     public void customerInsert () {
-        System.out.println("회원가입창");
+        System.out.println("----------------------------회원 가입창-------------------------------------");
         //System.out.print("회원 아이디(전화번호 뒷자리) : ");
         //int cid = sc.nextInt();
         System.out.print("회원 이름 : ");

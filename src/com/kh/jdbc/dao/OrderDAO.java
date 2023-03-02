@@ -102,10 +102,6 @@ public class OrderDAO {
         Common.close(conn);
     }
 
-    public void receiptPrint() {
 
-        System.out.println("============================  [ 영  수  증 ] ============================");
-
-    }
 }
 

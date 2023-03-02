@@ -134,7 +134,7 @@ public class Kiosk {
         int answer4= sc.nextInt();
         boolean isReceipt  = (answer4 == 1)? true:false;
         if(isReceipt){
-            orDao.receiptPrint();
+
         }
         System.out.println("------------------------------------------------------------------------");
     }
@@ -142,7 +142,6 @@ public class Kiosk {
 
         //회원정보조회
     public void memberMode () {
-        System.out.println("회원정보 메소드 호출");
         while (true) {
             System.out.println("[메뉴를 선택 하세요]");
             System.out.print("[1] 회원가입 [2] 포인트 조회 [3] 뒤로 가기 : ");
