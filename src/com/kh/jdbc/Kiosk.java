@@ -250,7 +250,7 @@ public class Kiosk {
             int sel = sc.nextInt();
             switch (sel) {
                 case 1:
-                    System.out.println("========================== [ 매 출  조 회 ] ==========================");
+                    System.out.println("============================ [ 매 출  조 회 ] ============================");
                     System.out.print("[1] 월별매출 조회 [2] 총 매출 조회 [3] 아이스크림 판매 순위  : ");
                     int c_sel = sc.nextInt();
                     switch (c_sel) {

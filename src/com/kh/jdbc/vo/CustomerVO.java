@@ -1,6 +1,6 @@
 package com.kh.jdbc.vo;
 
-import java.math.BigDecimal;
+
 
 public class CustomerVO {
     private String cid;

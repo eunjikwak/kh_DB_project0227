@@ -113,9 +113,9 @@ public class StoreDAO {
         for (Map.Entry<String, Integer> entry : salesByMonth.entrySet()) { // Map 객체의 월별 매출액 출력
             String month = entry.getKey();
             int sales = entry.getValue();
-            System.out.println("-----------------------------------");
+            System.out.println("------------------------------------------------------------------------");
             System.out.println(month + " 월 매출 : " + sales + " 원");
-            System.out.println("-----------------------------------");
+            System.out.println("------------------------------------------------------------------------");
         }
     }
 
@@ -144,9 +144,9 @@ public class StoreDAO {
     public void totalSalesPrint() {
         StoreDAO sDAO = new StoreDAO();
         int totalSales = sDAO.totalSales();
-        System.out.println("-----------------------------------");
+        System.out.println("------------------------------------------------------------------------");
         System.out.println("총 매출 : " + totalSales + "원");
-        System.out.println("-----------------------------------");
+        System.out.println("------------------------------------------------------------------------");
     }
 
 
@@ -175,14 +175,14 @@ public class StoreDAO {
 
 
     public void top5MenuPrint(List<MenuVO> menuList) {
-        System.out.println("============ TOP 5 MENU =============");
+        System.out.println("==========================[ T O P 5 M E N U ]==========================");
 
         for (int i = 0; i < menuList.size(); i++) { // 내림차순으로 정렬해서 조회한 결과를 list에 담은 것을
             MenuVO vo = menuList.get(i); // list 순회하면서 객체에서 메뉴명을 가져와 출력
             System.out.println((i + 1) + "위 : " + vo.getName() );
             // System.out.println((i + 1) + "위 : " + vo.getName() + " - " + vo.getCnt() + " 개 판매 "); //- 판매개수까지 출력
         }
-        System.out.println("-----------------------------------");
+        System.out.println("------------------------------------------------------------------------");
     }
 
 
@@ -191,7 +191,7 @@ public class StoreDAO {
             String sql = "SELECT M_NAME, STOCK FROM MENU ORDER BY STOCK ";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
-            System.out.println("-----------------------------------");
+            System.out.println("------------------------------------------------------------------------");
             while (rs.next()) {
                 String menuName = rs.getString("M_NAME");
                 int stock = rs.getInt("STOCK");
@@ -206,7 +206,7 @@ public class StoreDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("-----------------------------------");
+        System.out.println("------------------------------------------------------------------------");
     }
 }
 
