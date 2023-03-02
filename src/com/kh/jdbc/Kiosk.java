@@ -145,7 +145,7 @@ public class Kiosk {
             System.out.println("회원정보 메소드 호출");
             while (true) {
                 System.out.println("[메뉴를 선택 하세요]");
-                System.out.print("[1]회원가입 [2] 포인트 조회 : ");
+                System.out.print("[1]회원가입 [2] 포인트 조회 [3] 뒤로 가기 : ");
                 int sel = sc.nextInt();
                 switch (sel) {
                     case 1:
@@ -161,6 +161,8 @@ public class Kiosk {
                         CustomerVO vo = cDao.customerPointSelect(num);
                         cDao.customerPointPrint(vo);
                         break;
+                    case 3 :
+                        return;
                 }
             }
 
@@ -187,7 +189,7 @@ public class Kiosk {
                     }
                 }
                 System.out.println(" =================[ 관 리 자  메 뉴  선 택 ]====================");
-                System.out.print("[1] 매출 조회 [2] 재고 조회 [3] 주문내역 조회 [4] 메뉴 관리 [5] 회원 관리 : ");
+                System.out.print("[1] 매출 조회 [2] 재고 조회 [3] 주문내역 조회 [4] 메뉴 관리 [5] 회원 관리 [6] 뒤로 가기 : ");
                 int sel = sc.nextInt();
                 switch (sel) {
                     case 1:
@@ -262,6 +264,9 @@ public class Kiosk {
                                 System.out.println("회원 삭제가 완료되었습니다.");
                                 break;
                         }
+                        break;
+                    case 6 :
+                        return;
 
 
                 }
