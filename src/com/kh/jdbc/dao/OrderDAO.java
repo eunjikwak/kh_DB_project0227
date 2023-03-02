@@ -63,7 +63,7 @@ public class OrderDAO {
             System.out.println("고객 아이디 : " + e.getId());
             System.out.println("적립 포인트 : " + e.getCs_point());
             System.out.println("누적 포인트 : " + e.getTotal_point());
-            System.out.println("=========================");
+            System.out.println("------------------------------------------------------------------------");
         }
     }
 
