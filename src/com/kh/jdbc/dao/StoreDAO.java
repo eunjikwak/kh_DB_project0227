@@ -92,17 +92,17 @@ public class StoreDAO {
     //월별 매출 조회 메소드
 
     public Map<String, Integer> salesByMonth() {
-        Map<String, Integer> salesByMonth = new HashMap<>();
+        Map<String, Integer> salesByMonth = new HashMap<>();  // Map의 키 값은 월, 값은 해당 월의 매출액
         try {
             conn = Common.getConnection();
             stmt = conn.createStatement();
             String sql = "SELECT TO_CHAR(OD_DATE, 'MM') AS 월 , SUM(TOTAL_PRICE) AS 월별매출 FROM cs_order GROUP BY TO_CHAR(OD_DATE, 'MM')";
-            rs = stmt.executeQuery(sql);
+            rs = stmt.executeQuery(sql); // 월별로 그룹화하여 월별매출 조회
 
             while (rs.next()) {
                 String month = rs.getString("월");
                 int monthSales = rs.getInt("월별매출");
-                salesByMonth.put(month, monthSales);
+                salesByMonth.put(month, monthSales); //쿼리문으로부터 월, 월별매출을 받아와 Map에 저장
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -111,7 +111,7 @@ public class StoreDAO {
     }
 
     public void salesByMonthPrint(Map<String, Integer> salesByMonth) {
-        for (Map.Entry<String, Integer> entry : salesByMonth.entrySet()) {
+        for (Map.Entry<String, Integer> entry : salesByMonth.entrySet()) { // Map 객체의 월별 매출액 출력
             String month = entry.getKey();
             int sales = entry.getValue();
             System.out.println("-----------------------------------");
@@ -178,8 +178,8 @@ public class StoreDAO {
     public void top5MenuPrint(List<MenuVO> menuList) {
         System.out.println("============ TOP 5 MENU =============");
 
-        for (int i = 0; i < menuList.size(); i++) {
-            MenuVO vo = menuList.get(i);
+        for (int i = 0; i < menuList.size(); i++) { // 내림차순으로 정렬해서 조회한 결과를 list에 담은 것을
+            MenuVO vo = menuList.get(i); // list 순회하면서 객체에서 메뉴명을 가져와 출력
             System.out.println((i + 1) + "위 : " + vo.getName() );
             // System.out.println((i + 1) + "위 : " + vo.getName() + " - " + vo.getCnt() + " 개 판매 "); //- 판매개수까지 출력
         }
