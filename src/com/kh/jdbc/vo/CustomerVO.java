@@ -46,6 +46,8 @@ public class CustomerVO {
     public void setTotalPoint(int totalPoint) {
         this.totalPoint = totalPoint;
     }
+
+
 }
 
 

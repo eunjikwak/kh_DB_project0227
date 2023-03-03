@@ -215,6 +215,32 @@ public class CustomerDAO {
         }
         return isCid;
     }
+
+    public boolean isName(String cName) { // 관리자 테이블에서 아이디, 비밀번호 조회 하는 메소드
+        boolean isName = false;
+        try {
+            conn = Common.getConnection();
+            String query = "SELECT COUNT(*) FROM CUSTOMER WHERE CS_NAME = ? ";
+            // COUNT(*) 일치하는 레코드가 있는지 확인! 만약 반환된 값이 0보다 크면, 일치하는 레코드가 존재한다는 것을 의미
+            pStmt = conn.prepareStatement(query);
+            pStmt.setString(1, cName);
+            rs = pStmt.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                if (count > 0) {
+                    isName = true;
+                }
+            }
+            Common.close(rs);
+            Common.close(pStmt);
+            Common.close(conn);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return isName;
+    }
     public String inputID() {
         String id;
         while (true){

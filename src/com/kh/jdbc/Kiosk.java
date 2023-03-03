@@ -282,7 +282,14 @@ public class Kiosk {
                             orDao.orderSelectPrint(olist);
                             break;
                         case 2: // 회원별 주문내역 조회
-                            orDao.orderByNamePrint();
+                            String cName =null;
+                            while (true){
+                                System.out.print("주문내역을 출력할 고객의 이름을 입력하세요 : ");
+                                cName = sc.next();
+                                if(cDao.isName(cName))break;
+                                System.out.println("잘못입력하셨습니다. 다시입력해 주세요.");
+                            }
+                            orDao.orderByNamePrint(cName);
                             break;
                     }
                     break;
