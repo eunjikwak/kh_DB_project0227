@@ -5,9 +5,7 @@ import com.kh.jdbc.vo.MenuVO;
 import com.kh.jdbc.vo.StoreVO;
 
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.Date;
 
 public class StoreDAO {
 
@@ -33,7 +31,6 @@ public class StoreDAO {
                 String k_name = rs.getString("K_NAME");
                 String addr = rs.getString("ADDRESS");
                 int pos = rs.getInt("POS");
-                ;
 
                 StoreVO vo = new StoreVO(id, pwd, s_name, k_name, addr, pos);
                 list.add(vo);
@@ -50,8 +47,6 @@ public class StoreDAO {
 
     public void storeSelectPrint(List<StoreVO> list) {
         for (StoreVO e : list) {
-            System.out.println("관리자 아이디 : " + e.getId());
-            System.out.println("비밀번호 : " + e.getPwd());
             System.out.println("점포명 : " + e.getS_name());
             System.out.println("대표자 이름 : " + e.getK_name());
             System.out.println("주소 : " + e.getAddr());

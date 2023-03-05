@@ -34,8 +34,8 @@ public class Kiosk {
         while (isOrder) {
             System.out.println("============================  [ 주 문 하 기 ] ============================");
             //옵션 선택
-            List<OptionVO> oplist = opDao.optionSelect();
-            opDao.optionSizePrint(oplist);
+            List<OptionVO> oplist = opDao.optionSelect(); //옵션 정보 조회
+            opDao.optionSizePrint(oplist); // 옵션 사이즈 출력
             System.out.println();
             int size_n = 0;
             while (true) {
@@ -50,7 +50,7 @@ public class Kiosk {
             t_price += opDao.optionFind(size_n).getPrice();
             System.out.println(size + "를 선택하셨습니다.");
             System.out.println("----------------------------- 메 뉴 LIST  ------------------------------- ");
-            //맛 선택
+            //맛 선택을 저장할 리스트
             mnlist = mDao.MenuSelect();
             mDao.menuOrderPrint(mnlist);
             System.out.println(size_n + "가지 맛을 입력해 주세요.");
@@ -140,12 +140,12 @@ public class Kiosk {
         //고객 정보 포인트에 누적 포인트 업데이트 (id가 존재했을때만)
         if (id != "") {
             cDao.pointUpdate(t_price, t_point, id);
-            //업데이트 된 포인트 다시 조회
+            //customerPointSelect() 메소드를 호출하여 업데이트 된 포인트 정보를 다시 조회
             vo = cDao.customerPointSelect(id);
-            t_point = vo.getTotalPoint();
+            t_point = vo.getTotalPoint(); //조회된 포인트 정보에서 총 포인트를 가져와 t_point 변수에 저장
         }
 
-        //주문 내역 테이블에 행 추가
+        // orDao 객체의 orderInsert() 메소드를 호출하여 주문 내역 테이블에 행 추가
         orDao.orderInsert(orderNo.size(),sName_rst,mName_rst,spoon,payment,t_price,id,t_point);
         System.out.println("------------------------------------------------------------------------");
 
@@ -164,10 +164,11 @@ public class Kiosk {
         String opName;
         int price;
         System.out.println("============================  [ 영  수  증 ] ============================");
-        System.out.println("[ 주 문 번 호 ]");
         List<StoreVO> storeVo = sDao.storeSelect();
         sDao.storeSelectPrint(storeVo);
-        // 주문시간
+
+        System.out.print("[ 주 문 번 호 ]");
+        //System.out.println(orDao.orderNum());
         java.util.Date now = new Date();
         System.out.println(now);
         System.out.println("------------------------------------------------------------------------");

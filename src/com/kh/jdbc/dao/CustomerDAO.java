@@ -2,8 +2,6 @@ package com.kh.jdbc.dao;
 
 import com.kh.jdbc.util.Common;
 import com.kh.jdbc.vo.CustomerVO;
-
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -190,7 +188,7 @@ public class CustomerDAO {
         Common.close(conn);
     }
 
-    public boolean isCid(String id) { // 관리자 테이블에서 아이디, 비밀번호 조회 하는 메소드
+    public boolean isCid(String id) { //  입력된 아이디와 일치하는 레코드가 고객 테이블에 존재하는지 확인하는 메소드
         boolean isCid = false;
         try {
             conn = Common.getConnection();
@@ -216,7 +214,7 @@ public class CustomerDAO {
         return isCid;
     }
 
-    public boolean isName(String cName) { // 관리자 테이블에서 아이디, 비밀번호 조회 하는 메소드
+    public boolean isName(String cName) { // 입력된 이름과 일치하는 레코드가 고객 테이블에 존재하는지 확인하는 메소드
         boolean isName = false;
         try {
             conn = Common.getConnection();

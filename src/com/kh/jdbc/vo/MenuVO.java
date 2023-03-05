@@ -19,10 +19,6 @@ public class MenuVO {
         this.cnt = cnt;
     }
 
-
-
-
-
     public int getNo() {
         return no;
     }
