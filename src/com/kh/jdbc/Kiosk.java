@@ -161,13 +161,12 @@ public class Kiosk {
     }
 
     public void receiptPrint(String mName, int spoon, String payment, int t_total, List<String> opSize,CustomerVO vo) {
-        String opName;
-        int price;
+
         System.out.println("============================  [ 영  수  증 ] ============================");
         List<StoreVO> storeVo = sDao.storeSelect();
         sDao.storeSelectPrint(storeVo);
 
-        System.out.print("[ 주 문 번 호 ]");
+        System.out.print("[ 점 포 정 보 ]");
         //System.out.println(orDao.orderNum());
         java.util.Date now = new Date();
         System.out.println(now);
